@@ -1,5 +1,6 @@
-import pygame
 import random
+
+import pygame
 
 # Konfigurasi dasar
 WIDTH, HEIGHT = 800, 600
@@ -94,7 +95,7 @@ class Ball:
         offset = max(-1.0, min(1.0, offset))
 
         # Kecepatan setelah pantul: sedikit meningkat
-        speed = (abs(self.vel_x) + 0.4)
+        speed = abs(self.vel_x) + 0.4
         speed = min(speed, 12)  # batasi maksimal
 
         # Sudutkan laju: komponen Y dipengaruhi offset
@@ -125,12 +126,27 @@ def main():
     font = pygame.font.SysFont(None, 48)
 
     # Buat objek paddle & bola
-    player = Paddle(x=30, y=HEIGHT // 2 - PADDLE_HEIGHT // 2,
-                    width=PADDLE_WIDTH, height=PADDLE_HEIGHT, speed=PLAYER_SPEED)
-    ai = Paddle(x=WIDTH - 30 - PADDLE_WIDTH, y=HEIGHT // 2 - PADDLE_HEIGHT // 2,
-                width=PADDLE_WIDTH, height=PADDLE_HEIGHT, speed=AI_SPEED)
-    ball = Ball(x=WIDTH // 2 - BALL_SIZE // 2, y=HEIGHT // 2 - BALL_SIZE // 2,
-                size=BALL_SIZE, speed_x=BALL_SPEED_X, speed_y=BALL_SPEED_Y)
+    player = Paddle(
+        x=30,
+        y=HEIGHT // 2 - PADDLE_HEIGHT // 2,
+        width=PADDLE_WIDTH,
+        height=PADDLE_HEIGHT,
+        speed=PLAYER_SPEED,
+    )
+    ai = Paddle(
+        x=WIDTH - 30 - PADDLE_WIDTH,
+        y=HEIGHT // 2 - PADDLE_HEIGHT // 2,
+        width=PADDLE_WIDTH,
+        height=PADDLE_HEIGHT,
+        speed=AI_SPEED,
+    )
+    ball = Ball(
+        x=WIDTH // 2 - BALL_SIZE // 2,
+        y=HEIGHT // 2 - BALL_SIZE // 2,
+        size=BALL_SIZE,
+        speed_x=BALL_SPEED_X,
+        speed_y=BALL_SPEED_Y,
+    )
 
     # Skor
     score_player = 0
